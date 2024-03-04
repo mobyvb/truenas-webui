@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as cronParser from 'cron-parser';
 import { Options as CronOptions } from 'cronstrue/dist/options';
 import cronstrue from 'cronstrue/i18n';
+import { zonedTimeToUtc } from 'date-fns-tz';
 import { formatDistanceToNowShortened } from 'app/helpers/format-distance-to-now-shortened';
 import { Option } from 'app/interfaces/option.interface';
 import { LocaleService } from 'app/services/locale.service';
@@ -139,9 +140,18 @@ export class TaskService {
   }
 
   getTaskNextTime(scheduleExpression: string): Date {
-    const schedule = cronParser.parseExpression(scheduleExpression, { iterator: true });
-
-    return schedule.next().value.toDate();
+    const schedule = cronParser.parseExpression(scheduleExpression, { iterator: true, tz: 'Europe/London' });
+    const nextUtcTimestampToLocalTimezone = schedule.next().value.toDate();
+    const dateInMachineTimezoneAndSameAsUtc = new Date(
+      nextUtcTimestampToLocalTimezone.getUTCFullYear(),
+      nextUtcTimestampToLocalTimezone.getUTCMonth(),
+      nextUtcTimestampToLocalTimezone.getUTCDate(),
+      nextUtcTimestampToLocalTimezone.getUTCHours(),
+      nextUtcTimestampToLocalTimezone.getUTCMinutes(),
+      nextUtcTimestampToLocalTimezone.getUTCSeconds(),
+      nextUtcTimestampToLocalTimezone.getUTCMilliseconds(),
+    );
+    return zonedTimeToUtc(dateInMachineTimezoneAndSameAsUtc, this.localeService.timezone);
   }
 
   /**

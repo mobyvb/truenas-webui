@@ -80,6 +80,20 @@ export class FormatDateTimePipe implements PipeTransform {
     return this.formatDateTime(value, this.timezone);
   }
 
+  transformWithoutTimezone(value: Date | number | string, dateFormat?: string, timeFormat?: string): string {
+    if (dateFormat) {
+      this.dateFormat = dateFormat;
+    }
+    if (timeFormat) {
+      this.timeFormat = timeFormat;
+    }
+    if (typeof value === 'string') {
+      return this.formatDateTime(Date.parse(value), null);
+    }
+
+    return this.formatDateTime(value, null);
+  }
+
   formatDateTime(date: Date | number, tz?: string): string {
     try {
       let localDate = date;

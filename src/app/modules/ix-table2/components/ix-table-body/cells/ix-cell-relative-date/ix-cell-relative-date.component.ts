@@ -38,7 +38,7 @@ export class IxCellRelativeDateComponent<T> extends ColumnComponent<T> {
     }
 
     if (isValid(new Date(this.value as string))) {
-      return this.formatDateTime.transform(this.value as number);
+      return this.formatDateTime.transformWithoutTimezone(this.value as number);
     }
 
     return this.value as string;
