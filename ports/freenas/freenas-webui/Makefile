@@ -12,7 +12,7 @@ COMMENT=	Angular Web User Interface for FreeNAS
 
 EXTRACT_ONLY=
 
-FETCH_DEPENDS=	yarn:www/yarn \
+FETCH_DEPENDS=	yarn:www/yarn-node18 \
 		git>0:devel/git \
 		python2>0:lang/python2 \
     gmake:devel/gmake
