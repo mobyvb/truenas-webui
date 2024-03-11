@@ -14,11 +14,9 @@ EXTRACT_ONLY=
 
 FETCH_DEPENDS=	yarn:www/yarn-node18 \
 		git>0:devel/git \
-		python2>0:lang/python2 \
     gmake:devel/gmake
 BUILD_DEPENDS=	rsync>0:net/rsync \
-		yarn:www/yarn \
-		python2>0:lang/python2 \
+		yarn:www/yarn-node18 \
     gmake:devel/gmake
 RUN_DEPENDS=  gmake:devel/gmake
 
