@@ -56,6 +56,7 @@ export interface DashboardNetworkInterfaceAlias extends NetworkInterfaceAlias {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements AfterViewInit, OnDestroy {
+  test: never;
   reorderMode = false;
   isSavingState = false;
   screenType = ScreenType.Desktop;

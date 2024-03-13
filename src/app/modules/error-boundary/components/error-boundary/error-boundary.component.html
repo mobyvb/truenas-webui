@@ -1,0 +1,12 @@
+<h1>{{ hasError ? 'YEs' : 'no'}}</h1>
+
+<ng-container *ngIf="!hasError">
+  <ng-content></ng-content>
+</ng-container>
+<ng-container *ngIf="hasError">
+  <ng-content select="[fallback]"></ng-content>
+  <div class="error-message">
+    <h2>An error occurred</h2>
+    <p>{{ errorMessage }}</p>
+  </div>
+</ng-container>

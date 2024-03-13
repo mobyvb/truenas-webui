@@ -28,6 +28,8 @@ import { CoreComponents } from 'app/core/core-components.module';
 import { CommonDirectivesModule } from 'app/directives/common/common-directives.module';
 import { getWindow, WINDOW } from 'app/helpers/window.helper';
 import { DialogModule } from 'app/modules/dialog/dialog.module';
+import { ErrorBoundaryModule } from 'app/modules/error-boundary/error-boundary.module';
+import { GlobalErrorHandler } from 'app/modules/error-boundary/services/global-error-handler.service';
 import { FeedbackModule } from 'app/modules/feedback/feedback.module';
 import { SnackbarModule } from 'app/modules/snackbar/snackbar.module';
 import { TestIdModule } from 'app/modules/test-id/test-id.module';
@@ -35,7 +37,6 @@ import { TooltipModule } from 'app/modules/tooltip/tooltip.module';
 import { AuthService } from 'app/services/auth/auth.service';
 import { TwoFactorGuardService } from 'app/services/auth/two-factor-guard.service';
 import { DisksUpdateService } from 'app/services/disks-update.service';
-import { ErrorHandlerService } from 'app/services/error-handler.service';
 import { FocusService } from 'app/services/focus.service';
 import { IxChainedSlideInService } from 'app/services/ix-chained-slide-in.service';
 import { IxFileUploadService } from 'app/services/ix-file-upload.service';
@@ -54,6 +55,7 @@ import { RoutePartsService } from './services/route-parts/route-parts.service';
 
 @NgModule({
   imports: [
+    ErrorBoundaryModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -138,7 +140,7 @@ import { RoutePartsService } from './services/route-parts/route-parts.service';
     DisksUpdateService,
     {
       provide: ErrorHandler,
-      useClass: ErrorHandlerService,
+      useClass: GlobalErrorHandler,
     },
     ThemeService,
     {

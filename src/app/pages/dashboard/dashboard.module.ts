@@ -20,6 +20,7 @@ import { CastModule } from 'app/modules/cast/cast.module';
 import { ChartsModule } from 'app/modules/charts/charts.module';
 import { EmptyComponent } from 'app/modules/empty/empty.component';
 import { EntityModule } from 'app/modules/entity/entity.module';
+import { ErrorBoundaryModule } from 'app/modules/error-boundary/error-boundary.module';
 import { InterfaceStatusIconComponent } from 'app/modules/interface-status-icon/interface-status-icon.component';
 import { IxDropGridModule } from 'app/modules/ix-drop-grid/ix-drop-grid.module';
 import { IxFileSizeModule } from 'app/modules/ix-file-size/ix-file-size.module';
@@ -80,6 +81,7 @@ import { routing } from './dashboard.routing';
     IxTable2Module,
     EmptyComponent,
     InterfaceStatusIconComponent,
+    ErrorBoundaryModule,
   ],
   declarations: [
     DashboardComponent,
