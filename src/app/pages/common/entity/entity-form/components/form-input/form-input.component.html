@@ -20,6 +20,7 @@
 			[placeholder]="config.placeholder | translate"
 			[attr.value]="config.value"
 			[formControlName]="config.name"
+      [class.password-field]="isPasswordField()"
 			[readonly]="config.readonly"
 			[required]="config.required"
 			[max]="config.max"

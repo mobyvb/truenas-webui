@@ -12,7 +12,7 @@ import globalHelptext from '../../../../../../helptext/global-helptext';
 @Component({
   selector: 'form-input',
   templateUrl: './form-input.component.html',
-  styleUrls: ['../dynamic-field/dynamic-field.css'],
+  styleUrls: ['../dynamic-field/dynamic-field.css', './form-input.component.scss'],
 })
 export class FormInputComponent implements Field {
   @ViewChild('fileInput', { static: true }) fileInput;
@@ -29,6 +29,10 @@ export class FormInputComponent implements Field {
 
   changeListener($event): void {
     this.readFile($event.target);
+  }
+
+  isPasswordField(): boolean {
+    return this.config.inputType === 'password' && !this.showPassword;
   }
 
   readFile(inputValue: any) {
